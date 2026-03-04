@@ -22,6 +22,7 @@ const { label = 'Не задан', stat } = defineProps({
 
 .stat-name {
 	font-weight: 700;
+	text-transform: uppercase;
 }
 
 .stat-value {
