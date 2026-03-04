@@ -11,6 +11,9 @@ export default [
 		languageOptions: {
 			ecmaVersion: 'latest',
 			sourceType: 'module',
+			globals: {
+				console: 'readonly',
+			},
 		},
 		rules: {
 			'vue/multi-word-component-names': 'off',
