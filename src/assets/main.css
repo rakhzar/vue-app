@@ -4,12 +4,13 @@
 	--color-primary-inverted: #000000;
 	--color-bg-card: #272e37;
 	--color-bg-main: #222831;
-	--gradient: linear-gradient(91deg, rgba(144, 217, 224, 0.9) 0.2% rgba(84, 96, 230, 0.9) 100%);
+	--gradient: linear-gradient(91deg, rgba(144, 217, 224, 0.9) 0.2%, rgba(84, 96, 230, 0.9) 100%);
 	--gradient-inverted: linear-gradient(
 		256deg,
-		rgba(144, 217, 224, 0.9) 9.04% rgba(84, 96, 230, 0.9) 92.2%
+		rgba(144, 217, 224, 0.9) 9.04%,
+		rgba(84, 96, 230, 0.9) 92.2%
 	);
-	--font: font-family: 'Montserrat', sans-serif;
+	--font: 'Montserrat', sans-serif;
 }
 body {
 	font-family: var(--font);
@@ -17,4 +18,8 @@ body {
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	background-color: var(--color-bg);
+
+	display: grid;
+	place-items: center;
+	min-height: 100vh;
 }
