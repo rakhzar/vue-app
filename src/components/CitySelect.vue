@@ -21,10 +21,6 @@ function select() {
 function edit() {
   isEdited.value = true;
 }
-
-function updateCity(newCity) {
-  city.value = newCity;
-}
 </script>
 
 <template>
@@ -35,9 +31,8 @@ function updateCity(newCity) {
       class="city-input"
     >
       <Input
+        v-model="city"
         placeholder="Введите город"
-        :value="city"
-        @update:value="updateCity"
       />
       <Button @click="select()">Сохранить</Button>
     </div>
