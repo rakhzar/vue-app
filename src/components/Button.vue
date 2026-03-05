@@ -20,6 +20,9 @@
 	display: flex;
 	gap: 9px;
 	align-items: center;
+	height: 53px;
+	width: 100%;
+	justify-content: center;
 }
 
 .button:hover {
