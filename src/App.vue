@@ -6,6 +6,8 @@ import Stat from './components/Stat.vue';
 let saveCity = ref('Moscow');
 let data = ref({
 	humidity: 90,
+	rain: 0,
+	wind: 3,
 });
 
 async function getCity(city) {
@@ -14,19 +16,27 @@ async function getCity(city) {
 }
 
 const dataModified = computed(() => {
-	return {
-		label: 'Влажность',
-		stat: data.value.humidity + '%',
-	};
+	return [
+		{
+			label: 'Влажность',
+			stat: data.value.humidity + '%',
+		},
+		{
+			label: 'Осадки',
+			stat: data.value.rain + '%',
+		},
+		{
+			label: 'Ветер',
+			stat: data.value.wind + 'м/ч',
+		},
+	];
 });
 </script>
 
 <template>
 	<main class="main">
-		{{ date }}
 		<div id="city">{{ saveCity }}</div>
-		<Stat v-bind="dataModified" />
-		<Stat label="Осадки" stat="0%" />
+		<Stat v-for="item in dataModified" v-bind="item" :key="item.label" />
 		<CitySelect @select-city="getCity" />
 	</main>
 </template>
