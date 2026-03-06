@@ -1,25 +1,28 @@
 import vue from 'eslint-plugin-vue';
 import js from '@eslint/js';
 import prettier from 'eslint-config-prettier';
-
 export default [
-	js.configs.recommended,
-	...vue.configs['flat/recommended'],
-	prettier,
-	{
-		files: ['**/*.vue', '**/*.js'],
-		languageOptions: {
-			ecmaVersion: 'latest',
-			sourceType: 'module',
-			globals: {
-				console: 'readonly',
-			},
-		},
-		rules: {
-			'vue/multi-word-component-names': 'off',
-			'vue/require-default-prop': 'off',
-			'no-unused-vars': 'error',
-			'vue/no-unused-vars': 'error',
-		},
-	},
+  js.configs.recommended,
+  ...vue.configs['flat/recommended'],
+  prettier,
+  {
+    files: ['**/*.vue', '**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        console: 'readonly',
+        fetch: 'readonly',
+        URLSearchParams: 'readonly',
+        window: 'readonly',
+        document: 'readonly',
+      },
+    },
+    rules: {
+      'vue/multi-word-component-names': 'off',
+      'vue/require-default-prop': 'off',
+      'no-unused-vars': 'error',
+      'vue/no-unused-vars': 'error',
+    },
+  },
 ];
