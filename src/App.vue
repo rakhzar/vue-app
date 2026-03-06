@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, ref, watch, onMounted } from 'vue';
 import CitySelect from './components/CitySelect.vue';
 import Stat from './components/Stat.vue';
 import Error from './components/Error.vue';
@@ -7,11 +7,10 @@ import DayCard from './components/DayCard.vue';
 
 let data = ref();
 let error = ref();
+let currentCity = ref('Moscow');
 
 const dataModified = computed(() => {
-  if (!data.value) {
-    return [];
-  }
+  if (!data.value) return [];
   return [
     {
       label: 'Влажность',
@@ -39,9 +38,10 @@ const errorDisplay = computed(() => {
 });
 
 /**
- * @param {any} city
+ * @param {string} city
  */
 async function getCity(city) {
+  if (!city) return;
   const params = new URLSearchParams({
     q: city,
     lang: 'ru',
@@ -59,26 +59,42 @@ async function getCity(city) {
   error.value = null;
   data.value = await res.json();
 }
+
+watch(currentCity, (newCity) => {
+  getCity(newCity);
+});
+
+onMounted(() => {
+  getCity(currentCity.value);
+});
 </script>
 
 <template>
   <main class="main">
-    <Error
-      v-if="error"
-      :error="errorDisplay"
-    />
-    <DayCard
-      :weather-code="1000"
-      :temp="30"
-      :date="new Date()"
-    />
-    <div id="city"></div>
-    <Stat
-      v-for="item in dataModified"
-      v-bind="item"
-      :key="item.label"
-    />
-    <CitySelect @select-city="getCity" />
+    <Error :error="errorDisplay" />
+    <div
+      v-if="data"
+      class="stat-data"
+    >
+      <div class="stat-list">
+        <Stat
+          v-for="item in dataModified"
+          v-bind="item"
+          :key="item.label"
+        />
+      </div>
+      <div class="daycard-list">
+        <DayCard
+          v-for="item in data.forecast.forecastday"
+          :key="item.date"
+          :weather-code="item.day.condition.code"
+          :temp="item.day.avgtemp_c"
+          :date="new Date(item.date)"
+        />
+      </div>
+    </div>
+
+    <CitySelect v-model="currentCity" />
   </main>
 </template>
 
@@ -87,5 +103,23 @@ async function getCity(city) {
   background: var(--color-bg-main);
   padding: 60px 50px;
   border-radius: 25px;
+}
+
+.daycard-list {
+  display: flex;
+  gap: 1px;
+}
+
+.stat-data {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  margin-bottom: 70px;
+}
+
+.stat-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 </style>
