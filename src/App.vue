@@ -3,14 +3,7 @@ import { computed, ref } from 'vue';
 import CitySelect from './components/CitySelect.vue';
 import Stat from './components/Stat.vue';
 import Error from './components/Error.vue';
-
-const API_ENDPOINT = 'https://api.weatherapi.com/v1';
-const errorMap = new Map([
-  [1006, 'Указанный город не найден'],
-]);
-const errorDisplay = computed(() => {
-  return errorMap.get(error.value?.error?.code);
-});
+import DayCard from './components/DayCard.vue';
 
 let data = ref();
 let error = ref();
@@ -33,6 +26,16 @@ const dataModified = computed(() => {
       stat: data.value.current.wind_kph + ' км/ч',
     },
   ];
+});
+
+const API_ENDPOINT = 'https://api.weatherapi.com/v1';
+
+const errorMap = new Map([
+  [1006, 'Указанный город не найден'],
+]);
+
+const errorDisplay = computed(() => {
+  return errorMap.get(error.value?.error?.code);
 });
 
 /**
@@ -63,6 +66,11 @@ async function getCity(city) {
     <Error
       v-if="error"
       :error="errorDisplay"
+    />
+    <DayCard
+      :weather-code="1000"
+      :temp="30"
+      :date="new Date()"
     />
     <div id="city"></div>
     <Stat
