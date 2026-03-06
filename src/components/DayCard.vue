@@ -12,9 +12,11 @@ const { weatherCode, temp, date } = defineProps({
 
 <template>
   <button class="day-card">
-    <IconSun v-if="weatherCode == 1000" />
-    <IconCloud v-if="weatherCode == 1003" />
-    <IconRain v-if="weatherCode == 1009" />
+    <IconSun v-if="weatherCode === 1000" />
+    <IconCloud
+      v-else-if="[1003, 1006, 1009].includes(weatherCode)"
+    />
+    <IconRain v-else />
     <div class="day-card__day">
       {{
         date.toLocaleDateString('ru-RU', {
@@ -40,6 +42,7 @@ const { weatherCode, temp, date } = defineProps({
   box-shadow: 1px 2px 4px 0px var(--color-bg-main);
   border: none;
   cursor: pointer;
+  width: 100%;
 }
 
 .day-card:hover {

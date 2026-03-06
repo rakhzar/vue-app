@@ -24,14 +24,5 @@ const { color = 'white', size = 54 } = defineProps({
         :fill="color"
       />
     </g>
-    <defs>
-      <clipPath id="clip0_4_33">
-        <rect
-          width="54"
-          height="54"
-          :fill="color"
-        />
-      </clipPath>
-    </defs>
   </svg>
 </template>
