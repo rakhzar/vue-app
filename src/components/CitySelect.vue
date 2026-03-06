@@ -1,7 +1,7 @@
 <script setup>
 import IconLocation from '../icons/iconLocation.vue';
 import Button from './Button.vue';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import Input from './Input.vue';
 
 const emit = defineEmits({
@@ -10,12 +10,16 @@ const emit = defineEmits({
   },
 });
 
-let city = ref('Moscow');
+let city = ref('Moscowd');
 let isEdited = ref(false);
+
+onMounted(() => {
+  emit('selectCity', city.value);
+});
 
 function select() {
   isEdited.value = false;
-  emit('selectCity', 'London');
+  emit('selectCity', city.value);
 }
 
 function edit() {
@@ -25,19 +29,19 @@ function edit() {
 
 <template>
   <div class="city-select">
-    {{ city }}
     <div
-      v-show="isEdited"
+      v-if="isEdited"
       class="city-input"
     >
       <Input
         v-model="city"
         placeholder="Введите город"
+        @keyup.enter="select()"
       />
       <Button @click="select()">Сохранить</Button>
     </div>
     <Button
-      v-show="!isEdited"
+      v-if="!isEdited"
       @click="edit()"
     >
       <IconLocation />
