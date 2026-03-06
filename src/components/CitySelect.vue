@@ -1,25 +1,15 @@
 <script setup>
 import IconLocation from '../icons/iconLocation.vue';
 import Button from './Button.vue';
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import Input from './Input.vue';
 
-const emit = defineEmits({
-  selectCity(payload) {
-    return payload;
-  },
-});
+const city = defineModel({ type: String, required: true });
 
-let city = ref('Moscowd');
 let isEdited = ref(false);
-
-onMounted(() => {
-  emit('selectCity', city.value);
-});
 
 function select() {
   isEdited.value = false;
-  emit('selectCity', city.value);
 }
 
 function edit() {
@@ -45,7 +35,7 @@ function edit() {
       @click="edit()"
     >
       <IconLocation />
-      Изменить город
+      {{ city || 'Изменить город' }}
     </Button>
   </div>
 </template>
