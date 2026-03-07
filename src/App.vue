@@ -8,6 +8,7 @@ import DayCard from './components/DayCard.vue';
 let data = ref();
 let error = ref();
 let currentCity = ref('Moscow');
+let activeIndex = ref(0);
 
 const dataModified = computed(() => {
   if (!data.value) return [];
@@ -67,6 +68,15 @@ watch(currentCity, (newCity) => {
 onMounted(() => {
   getCity(currentCity.value);
 });
+
+function getDayCardProps(item, i) {
+  return {
+    weatherCode: item.day.condition.code,
+    temp: item.day.avgtemp_c,
+    date: new Date(item.date),
+    isActive: activeIndex.value == i,
+  };
+}
 </script>
 
 <template>
@@ -85,11 +95,10 @@ onMounted(() => {
       </div>
       <div class="daycard-list">
         <DayCard
-          v-for="item in data.forecast.forecastday"
+          v-for="(item, i) in data.forecast.forecastday"
           :key="item.date"
-          :weather-code="item.day.condition.code"
-          :temp="item.day.avgtemp_c"
-          :date="new Date(item.date)"
+          v-bind="getDayCardProps(item, i)"
+          @click="() => (activeIndex = Number(i))"
         />
       </div>
     </div>
