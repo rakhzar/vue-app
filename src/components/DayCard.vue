@@ -7,16 +7,20 @@ const { weatherCode, temp, date } = defineProps({
   weatherCode: Number,
   temp: Number,
   date: Date,
+  isActive: Boolean,
 });
 </script>
 
 <template>
-  <button class="day-card">
-    <IconSun v-if="weatherCode === 1000" />
+  <button
+    class="day-card"
+    :class="{ active: isActive }"
+  >
+    <IconSun v-if="weatherCode <= 1003" />
     <IconCloud
-      v-else-if="[1003, 1006, 1009].includes(weatherCode)"
+      v-if="weatherCode >= 1006 && weatherCode < 1063"
     />
-    <IconRain v-else />
+    <IconRain v-if="weatherCode >= 1063" />
     <div class="day-card__day">
       {{
         date.toLocaleDateString('ru-RU', {
