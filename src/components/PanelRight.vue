@@ -73,7 +73,9 @@ const errorDisplay = computed(() => {
       />
     </div>
   </div>
-  <CitySelect />
+  <CitySelect
+    @select-city:="(city) => emit('select-city', city)"
+  />
 </template>
 
 <style scoped>
