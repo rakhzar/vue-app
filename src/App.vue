@@ -14,7 +14,9 @@ let city = ref(saved ? saved : 'Moscow');
 provide(cityProvide, city);
 
 watchEffect(() => {
+  if (!city.value) return;
   localStorage.setItem('city', city.value);
+  activeIndex.value = 0;
   getCity(city.value);
 });
 
@@ -22,22 +24,29 @@ watchEffect(() => {
  * @param {string} city
  */
 async function getCity(city) {
-  const params = new URLSearchParams({
-    q: city,
-    lang: 'ru',
-    key: 'a939a176356242e99ef185725260503',
-    days: '3',
-  });
-  const res = await fetch(
-    `${API_ENDPOINT}/forecast.json?${params.toString()}`,
-  );
-  if (res.status != 200) {
-    error.value = await res.json();
+  if (!city) return;
+
+  try {
+    const params = new URLSearchParams({
+      q: city,
+      lang: 'ru',
+      key: 'a939a176356242e99ef185725260503',
+      days: '3',
+    });
+    const res = await fetch(
+      `${API_ENDPOINT}/forecast.json?${params.toString()}`,
+    );
+    if (res.status != 200) {
+      error.value = await res.json();
+      data.value = null;
+      return;
+    }
+    error.value = null;
+    data.value = await res.json();
+  } catch (error) {
+    error.value = { error: { code: 1006 } };
     data.value = null;
-    return;
   }
-  error.value = null;
-  data.value = await res.json();
 }
 </script>
 
@@ -55,6 +64,7 @@ async function getCity(city) {
         :error
         :active-index="activeIndex"
         @select-index="(i) => (activeIndex = Number(i))"
+        @select-city="getCity"
       />
     </div>
   </main>
