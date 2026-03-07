@@ -1,15 +1,18 @@
 <script setup>
 import IconLocation from '../icons/iconLocation.vue';
 import Button from './Button.vue';
-import { ref } from 'vue';
+import { inject, ref } from 'vue';
 import Input from './Input.vue';
+import { cityProvide } from '../constants';
 
-const city = defineModel({ type: String, required: true });
+const city = inject(cityProvide);
+const inputValue = ref(city.value);
 
 let isEdited = ref(false);
 
 function select() {
   isEdited.value = false;
+  city.value = inputValue.value;
 }
 
 function edit() {
