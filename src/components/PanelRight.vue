@@ -4,6 +4,7 @@ import CitySelect from './CitySelect.vue';
 import Stat from './Stat.vue';
 import Error from './Error.vue';
 import DayCard from './DayCard.vue';
+import { errorMap } from '../constants';
 
 const { error, data, activeIndex } = defineProps({
   error: Object,
@@ -40,7 +41,7 @@ const statData = computed(() => {
 });
 
 const errorDisplay = computed(() => {
-  return error.get(error.value?.error?.code);
+  return errorMap.get(error.value?.error?.code);
 });
 </script>
 
