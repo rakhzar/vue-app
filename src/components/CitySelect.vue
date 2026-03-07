@@ -9,8 +9,11 @@ const city = inject(cityProvide);
 
 let isEdited = ref(false);
 
+const inputValue = ref(city.value);
+
 function select() {
   isEdited.value = false;
+  city.value = inputValue.value;
 }
 
 function edit() {
@@ -25,7 +28,7 @@ function edit() {
       class="city-input"
     >
       <Input
-        v-model="city"
+        v-model="inputValue"
         v-focus
         placeholder="Введите город"
         @keyup.enter="select()"
