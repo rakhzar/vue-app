@@ -41,7 +41,7 @@ const statData = computed(() => {
 });
 
 const errorDisplay = computed(() => {
-  return errorMap.get(error.value?.error?.code);
+  return errorMap.get(error?.error?.code);
 });
 </script>
 
