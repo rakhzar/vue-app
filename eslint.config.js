@@ -16,6 +16,7 @@ export default [
         URLSearchParams: 'readonly',
         window: 'readonly',
         document: 'readonly',
+        localStorage: 'readonly',
       },
     },
     rules: {
