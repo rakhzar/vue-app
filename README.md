@@ -1,38 +1,58 @@
-# vue-app
+# 🌤️ Vue Weather App
 
-This template should help get you started developing with Vue 3 in Vite.
+Приложение погоды с прогнозом на 3 дня, построенное на Vue 3.
 
-## Recommended IDE Setup
+## 🛠️ Стек
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **Vue 3** — Composition API
+- **JavaScript**
+- **Vite** — сборщик
+- **Bun** — пакетный менеджер
+- **WeatherAPI** — источник данных
 
-## Recommended Browser Setup
+## 🚀 Установка и запуск
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+```bash
+# Клонировать репозиторий
+git clone https://github.com/username/vue-app.git
 
-## Customize configuration
+# Перейти в папку
+cd vue-app
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+# Установить зависимости
+bun install
 
-## Project Setup
-
-```sh
-npm install
+# Запустить проект
+bun run dev
 ```
 
-### Compile and Hot-Reload for Development
+## ✨ Функционал
 
-```sh
-npm run dev
+- 🌍 Погода по любому городу
+- 📅 Прогноз на 3 дня
+- 💾 Сохранение города через localStorage
+- ❌ Обработка ошибок API
+- 🎨 Динамические иконки погоды
+
+## 📁 Структура проекта
+
+```
+src/
+├── components/
+│   ├── PanelLeft.vue    # левая панель
+│   ├── PanelRight.vue   # правая панель
+│   ├── DayCard.vue      # карточка дня
+│   ├── CitySelect.vue   # выбор города
+│   ├── Stat.vue         # статистика
+│   ├── Button.vue       # кнопка
+│   ├── Input.vue        # инпут
+│   └── Error.vue        # ошибки
+├── icons/
+│   └── weather/         # иконки погоды
+├── constants.js         # константы
+└── App.vue              # корневой компонент
 ```
 
-### Compile and Minify for Production
+## 🔑 API
 
-```sh
-npm run build
-```
+Используется [WeatherAPI](https://www.weatherapi.com/)
