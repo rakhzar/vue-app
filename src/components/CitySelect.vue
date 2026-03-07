@@ -25,13 +25,14 @@ function edit() {
     >
       <Input
         v-model="city"
+        v-focus
         placeholder="Введите город"
         @keyup.enter="select()"
       />
       <Button @click="select()">Сохранить</Button>
     </div>
     <Button
-      v-if="!isEdited"
+      v-else
       @click="edit()"
     >
       <IconLocation />
