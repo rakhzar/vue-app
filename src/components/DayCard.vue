@@ -2,12 +2,23 @@
 import IconCloud from '../icons/weather/IconCloud.vue';
 import IconRain from '../icons/weather/IconRain.vue';
 import IconSun from '../icons/weather/IconSun.vue';
+import { computed } from 'vue';
 
-const { weatherCode, temp, date } = defineProps({
+const { weatherCode, temp, date, isActive } = defineProps({
   weatherCode: Number,
   temp: Number,
   date: Date,
   isActive: Boolean,
+});
+
+const iconColor = computed(() =>
+  isActive ? 'black' : 'white',
+);
+
+const currentIcon = computed(() => {
+  if (weatherCode <= 1003) return IconSun;
+  if (weatherCode < 1063) return IconCloud;
+  return IconRain;
 });
 </script>
 
@@ -16,11 +27,10 @@ const { weatherCode, temp, date } = defineProps({
     class="day-card"
     :class="{ active: isActive }"
   >
-    <IconSun v-if="weatherCode <= 1003" />
-    <IconCloud
-      v-if="weatherCode >= 1006 && weatherCode < 1063"
+    <component
+      :is="currentIcon"
+      :color="iconColor"
     />
-    <IconRain v-if="weatherCode >= 1063" />
     <div class="day-card__day">
       {{
         date.toLocaleDateString('ru-RU', {
@@ -49,7 +59,12 @@ const { weatherCode, temp, date } = defineProps({
   width: 100%;
 }
 
-.day-card:hover {
+.active {
+  background-color: var(--color-primary);
+  color: var(--color-primary-inverted);
+}
+
+.day-card:not(.active):hover {
   background-color: var(--color-bg-cards);
 }
 
