@@ -1,5 +1,5 @@
 <script setup>
-import { ref, provide, watch, onMounted } from 'vue';
+import { ref, provide, watchEffect } from 'vue';
 import PanelRight from './components/PanelRight.vue';
 import PaneLeft from './components/PaneLeft.vue';
 import { API_ENDPOINT, cityProvide } from './constants';
@@ -7,15 +7,14 @@ import { API_ENDPOINT, cityProvide } from './constants';
 let data = ref();
 let error = ref();
 let activeIndex = ref(0);
-let city = ref('Москва');
+
+const saved = localStorage.getItem('city');
+let city = ref(saved ? saved : 'Moscow');
 
 provide(cityProvide, city);
 
-watch(city, () => {
-  getCity(city.value);
-});
-
-onMounted(() => {
+watchEffect(() => {
+  localStorage.setItem('city', city.value);
   getCity(city.value);
 });
 
