@@ -10,11 +10,15 @@
 - **Bun** — пакетный менеджер
 - **WeatherAPI** — источник данных
 
+## 🌐 Demo
+
+[rakhzar.github.io/vue-app](https://rakhzar.github.io/vue-app/)
+
 ## 🚀 Установка и запуск
 
 ```bash
 # Клонировать репозиторий
-git clone https://github.com/username/vue-app.git
+git clone https://github.com/rakhzar/vue-app.git
 
 # Перейти в папку
 cd vue-app
@@ -24,6 +28,12 @@ bun install
 
 # Запустить проект
 bun run dev
+```
+
+## 📦 Деплой
+
+```bash
+bun run deploy
 ```
 
 ## ✨ Функционал
