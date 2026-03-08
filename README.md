@@ -12,13 +12,13 @@
 
 ## 🌐 Demo
 
-[rakhzar.github.io/vue-app](https://rakhzar.github.io/vue-app/)
+[rakhzar.github.io/vue-app](https://rakhzar.github.io/vue-weather/)
 
 ## 🚀 Установка и запуск
 
 ```bash
 # Клонировать репозиторий
-git clone https://github.com/rakhzar/vue-app.git
+git clone https://github.com/rakhzar/vue-weather.git
 
 # Перейти в папку
 cd vue-app
