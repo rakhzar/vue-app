@@ -64,7 +64,6 @@ async function getCity(city) {
         :error
         :active-index="activeIndex"
         @select-index="(i) => (activeIndex = Number(i))"
-        @select-city="getCity"
       />
     </div>
   </main>
@@ -85,7 +84,7 @@ async function getCity(city) {
   width: 500px;
   height: 680px;
   border-radius: 30px;
-  background-image: url('/public/bg.png');
+  background-image: url('/bg.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
