@@ -6,10 +6,9 @@ import Input from './Input.vue';
 import { cityProvide } from '../constants';
 
 const city = inject(cityProvide);
+const inputValue = ref(city.value);
 
 let isEdited = ref(false);
-
-const inputValue = ref(city.value);
 
 function select() {
   isEdited.value = false;
