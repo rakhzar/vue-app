@@ -5,7 +5,7 @@
 ## 🛠️ Стек
 
 - **Vue 3** — Composition API
-- **JavaScript**
+- **JavaScript** — ES6+
 - **Vite** — сборщик
 - **Bun** — пакетный менеджер
 - **WeatherAPI** — источник данных
