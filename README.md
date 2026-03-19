@@ -10,10 +10,6 @@
 - **Bun** — пакетный менеджер
 - **WeatherAPI** — источник данных
 
-## 🌐 Demo
-
-[rakhzar.github.io/weatherAPI](https://rakhzar.github.io/weatherAPI/)
-
 ## 🚀 Установка и запуск
 
 ```bash
