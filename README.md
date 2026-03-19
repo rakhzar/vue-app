@@ -12,7 +12,7 @@
 
 ## 🌐 Demo
 
-[rakhzar.github.io/vue-weather](https://rakhzar.github.io/weatherAPI/)
+[rakhzar.github.io/weatherAPI](https://rakhzar.github.io/weatherAPI/)
 
 ## 🚀 Установка и запуск
 
